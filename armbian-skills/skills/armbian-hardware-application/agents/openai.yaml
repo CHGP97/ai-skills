@@ -1,0 +1,3 @@
+interface:
+  display_name: "Armbian Hardware Applications"
+  short_description: "Extend existing applications with Armbian hardware"

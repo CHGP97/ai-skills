@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "armbian-compatibility-case-v1",
+  "type": "object",
+  "required": [
+    "id",
+    "board_id",
+    "soc_id",
+    "target_architecture",
+    "target_image",
+    "target_kernel",
+    "operation",
+    "compatibility",
+    "report_ref",
+    "limits",
+    "prepared_at"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "board_id": {
+      "type": "string"
+    },
+    "soc_id": {
+      "type": "string"
+    },
+    "operation": {
+      "type": "string"
+    },
+    "compatibility": {
+      "enum": [
+        "supported",
+        "unsupported",
+        "unknown"
+      ]
+    },
+    "report_ref": {
+      "type": "string"
+    },
+    "limits": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "prepared_at": {
+      "type": "string"
+    },
+    "validation_scope": {
+      "type": "object",
+      "properties": {
+        "physical_pins": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "uniqueItems": true
+        },
+        "local_line_offsets": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "application_user": {
+          "type": "string"
+        },
+        "application_form": {
+          "type": "string"
+        },
+        "external_load": {
+          "type": "string"
+        },
+        "applies_to_all_board_pins": {
+          "type": "boolean"
+        },
+        "not_current_target_state": {
+          "const": true
+        }
+      }
+    }
+  }
+}

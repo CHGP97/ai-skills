@@ -19,6 +19,14 @@ skills/{skill-name}/
     └── *.sh, *.py           # Maintenance and validation scripts
 ```
 
+### Armbian suite
+
+The Armbian family is maintained under `armbian-skills/`, with four independent installable directories at `armbian-skills/skills/{skill-name}/`. The parent is a maintenance suite, not a skill entry point. See [the suite README](armbian-skills/README.md) for the exact layout and commands.
+
+Maintain Armbian references in `armbian-skills/knowledge/armbian/references/` and generate the complete copies in each skill. Run the suite index/package checks and portable tests before submitting changes. Keep raw device captures, SDKs, models, user applications and build artifacts outside the tracked suite; generated archives belong in its ignored `dist/`.
+
+For an Armbian contribution, use the nested skill path in root README links and installation instructions. Changes to repository paths do not change the skill's name or its independent installation contract. Other skills keep the existing `skills/{skill-name}/` layout.
+
 ### Required Files Description
 
 #### SKILL.md
@@ -93,13 +101,13 @@ git push origin skills/cv181x-media/v3.0.0
    ```
 
 4. **Add or modify skills**:
-   - Create a new skill directory under `skills/`
+   - Create a new skill directory under `skills/`; for the Armbian suite, use `armbian-skills/skills/`
    - Follow the directory structure standard above
    - Ensure all required files are complete
 
 5. **Update root README**:
    - Add the new skill to the skills list in `README.md`
-   - Format: `- **[skill-name](skills/skill-name/README.md)** - Brief description`
+   - Format: `- **[skill-name](skills/skill-name/README.md)** - Brief description`; use `armbian-skills/skills/skill-name/README.md` for an Armbian entry.
 
 6. **Commit changes**:
    ```bash

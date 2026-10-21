@@ -1,0 +1,3 @@
+interface:
+  display_name: "Armbian Device Capabilities"
+  short_description: "Inspect hardware interfaces and application readiness"

@@ -1,0 +1,22 @@
+{
+  "schema_version": "1",
+  "fixture_only": true,
+  "target": {
+    "model": "unrecorded board",
+    "hardware_revisions": null
+  },
+  "task": {
+    "capabilities": [
+      "i2c"
+    ],
+    "operations": [
+      "sensor.read"
+    ],
+    "languages": [
+      "go"
+    ]
+  },
+  "facts": {
+    "stack_ids": null
+  }
+}

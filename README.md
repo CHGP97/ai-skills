@@ -19,9 +19,21 @@ This repository collects and maintains AI skill libraries for Seeed products, pr
 
 - **[cv181x-media](skills/cv181x-media/README.md)** - Complete multimedia application development guide for reCamera with Sophgo CV181X/CV182X/CV180X chips, covering 15+ core modules including video input/output, encoding/decoding, and audio processing
 
+- **[armbian-device-capabilities](armbian-skills/skills/armbian-device-capabilities/README.md)** - Discover and explain Armbian device interfaces, accelerators, electrical constraints, and application readiness
+
+- **[armbian-hardware-application](armbian-skills/skills/armbian-hardware-application/README.md)** - Extend existing applications or build hardware features using the project's language and deployment model
+
+- **[armbian-application-deploy](armbian-skills/skills/armbian-application-deploy/README.md)** - Deploy hardware applications with target ABI, runtime, device access, readiness, and recovery checks
+
+- **[armbian-application-verify](armbian-skills/skills/armbian-application-verify/README.md)** - Verify application behavior, physical hardware effects, actual acceleration backends, and resource cleanup
+
+The Armbian suite is **V1.0.0**, with four independent Skills and static references currently covering reComputer RK3576 / RK3588 DevKit and a shared workflow designed for additional Armbian platforms. Each task checks the actual hardware, software stack and application environment. See the [suite README](armbian-skills/README.md) for installation and maintenance. English is the default, with independent Chinese translations throughout the suite. Development proposals, evaluation history and device captures are excluded.
+
+**Armbian quick start:** [English](armbian-skills/QUICKSTART.md) · [简体中文](armbian-skills/QUICKSTART.zh-CN.md). Connect over SSH, install the skills, and complete a hardware application task using Codex or Claude Code. Install with `bash armbian-skills/install.sh --agent codex` (`claude` or `both` also supported).
+
 ## 🚀 Installation
 
-This repository is a collection of independent skills under `skills/`.
+This repository contains independent skills under `skills/` and the [Armbian suite](armbian-skills/README.md) under `armbian-skills/`. Install an individual Armbian skill from `armbian-skills/skills/{skill-name}/`; the suite parent is a maintenance directory.
 
 To use a skill from this repository:
 
@@ -39,6 +51,7 @@ After installing a skill, open its README and complete its dependency setup befo
 - **[cv181x-media](skills/cv181x-media/README.md)**: skill usage and project-specific workflow
 - **[ee-datasheet-master](skills/ee-datasheet-master/README.md)**: Python dependencies for `scripts/pdf_tools.py`
 - **[schematic-analyzer](skills/schematic-analyzer/README.md)**: Python dependencies, KiCad CLI, `pcbparts` MCP, and `ee-datasheet-master` / `pdf` prerequisites
+- **Armbian skills**: install any complete `armbian-skills/skills/{skill-name}/` directory independently; local reference matching uses Python 3.9+ standard library. The optional target probe uses Python 3 and is included only in `armbian-device-capabilities`. Application compilers, SDKs, runtimes, device access, and wiring depend on the actual project; no particular MCP or other Armbian skill is required.
 
 Recommended install order when you need schematic analysis:
 
@@ -59,6 +72,11 @@ Once installed, you can ask your AI assistant directly:
 - "How to configure VI module to capture 1080p video?"
 - "Show me how to add timestamp OSD to video stream"
 - "How to correct barrel distortion from wide-angle lens?"
+
+**Armbian Hardware Applications:**
+- "Explain which interfaces are available on this Armbian device and what is needed to use them."
+- "Add AHT20 collection to my existing Go service while preserving its API."
+- "Integrate NPU inference into this JavaScript application and verify the actual backend."
 
 **Datasheet Analysis:**
 - "What is the I2C address of BQ25895?"

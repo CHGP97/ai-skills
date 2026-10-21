@@ -1,0 +1,356 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "armbian-reference-metadata-v1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "id",
+    "kind",
+    "applies_to",
+    "required_refs",
+    "preconditions",
+    "refines",
+    "excludes",
+    "related",
+    "sources",
+    "validation_refs",
+    "maturity",
+    "owner",
+    "updated_at"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9._-]*$"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "maturity": {
+      "enum": [
+        "draft",
+        "documented",
+        "validated",
+        "deprecated"
+      ]
+    },
+    "owner": {
+      "type": "string",
+      "minLength": 1
+    },
+    "updated_at": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "applies_to": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "board_ids": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "soc_ids": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "hardware_revisions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "architectures": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "kernel_releases": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "image_ids": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "capabilities": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "operations": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "languages": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "stack_ids": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "preconditions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "field",
+          "operator"
+        ],
+        "properties": {
+          "field": {
+            "type": "string",
+            "minLength": 1
+          },
+          "operator": {
+            "enum": [
+              "eq",
+              "in",
+              "contains_exact"
+            ]
+          },
+          "value": {},
+          "values": {
+            "type": "array",
+            "minItems": 1
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "operator": {
+                  "const": "in"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "values"
+              ]
+            },
+            "else": {
+              "required": [
+                "value"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "refines": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "target_ref",
+          "field_paths",
+          "when"
+        ],
+        "properties": {
+          "target_ref": {
+            "type": "string"
+          },
+          "field_paths": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "when": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "field",
+                "operator"
+              ],
+              "properties": {
+                "field": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "operator": {
+                  "enum": [
+                    "eq",
+                    "in",
+                    "contains_exact"
+                  ]
+                },
+                "value": {},
+                "values": {
+                  "type": "array",
+                  "minItems": 1
+                }
+              },
+              "allOf": [
+                {
+                  "if": {
+                    "properties": {
+                      "operator": {
+                        "const": "in"
+                      }
+                    }
+                  },
+                  "then": {
+                    "required": [
+                      "values"
+                    ]
+                  },
+                  "else": {
+                    "required": [
+                      "value"
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "excludes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "when",
+          "reason",
+          "evidence_refs"
+        ],
+        "properties": {
+          "when": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": [
+                "field",
+                "operator"
+              ],
+              "properties": {
+                "field": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "operator": {
+                  "enum": [
+                    "eq",
+                    "in",
+                    "contains_exact"
+                  ]
+                },
+                "value": {},
+                "values": {
+                  "type": "array",
+                  "minItems": 1
+                }
+              },
+              "allOf": [
+                {
+                  "if": {
+                    "properties": {
+                      "operator": {
+                        "const": "in"
+                      }
+                    }
+                  },
+                  "then": {
+                    "required": [
+                      "values"
+                    ]
+                  },
+                  "else": {
+                    "required": [
+                      "value"
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          },
+          "evidence_refs": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    },
+    "required_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "related": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "validation_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

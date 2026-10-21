@@ -1,0 +1,43 @@
+{
+  "schema_version": "1",
+  "fixture_only": true,
+  "target": {
+    "device_tree": {
+      "compatible": [
+        "seeed,recomputer-rk3588-devkit",
+        "rockchip,rk3588"
+      ]
+    },
+    "board_ids": null,
+    "soc_ids": null,
+    "hardware_revisions": null,
+    "architectures": [
+      "aarch64"
+    ],
+    "kernel_releases": [
+      "fixture-kernel"
+    ]
+  },
+  "task": {
+    "capabilities": [
+      "gpu"
+    ],
+    "operations": [
+      "gpu.render"
+    ],
+    "languages": [
+      "javascript"
+    ]
+  },
+  "facts": {
+    "stack_ids": [
+      "mesa-panthor"
+    ],
+    "versions": {
+      "libgpiod": "2.2.1"
+    },
+    "application": {
+      "device_access": null
+    }
+  }
+}

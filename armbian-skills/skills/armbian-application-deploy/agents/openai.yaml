@@ -1,0 +1,3 @@
+interface:
+  display_name: "Armbian Application Deployment"
+  short_description: "Deploy hardware applications and verify service readiness"

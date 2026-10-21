@@ -1,0 +1,43 @@
+{
+  "schema_version": "1",
+  "fixture_only": true,
+  "target": {
+    "device_tree": {
+      "compatible": [
+        "seeed,recomputer rk3576 devkit",
+        "rockchip,rk3576"
+      ]
+    },
+    "board_ids": null,
+    "soc_ids": null,
+    "hardware_revisions": null,
+    "architectures": [
+      "aarch64"
+    ],
+    "kernel_releases": [
+      "fixture-kernel"
+    ]
+  },
+  "task": {
+    "capabilities": [
+      "gpio"
+    ],
+    "operations": [
+      "gpio.output"
+    ],
+    "languages": [
+      "rust"
+    ]
+  },
+  "facts": {
+    "stack_ids": [
+      "linux-gpio-chardev"
+    ],
+    "versions": {
+      "libgpiod": "2.2.1"
+    },
+    "application": {
+      "device_access": null
+    }
+  }
+}
